@@ -26,13 +26,13 @@ Accounts are anonymous by default. You can use the whole app without signing up 
   <img src="screenshots/fullscreen-photo.png" width="260" alt="Viewing an inscription's photo full-screen" />
 </p>
 
-## A few things worth mentioning if you're reading the code
+## How it's put together
 
-Area-mode inscriptions never store a precise coordinate in the first place — the imprecision happens at write time, not as a display-layer blur over real data. That felt like the only honest way to do it once I thought about what "private" actually needs to mean here.
+The client is intentionally thin. It doesn't decide who can see what, how fast someone can post, or where the boundary of an area-mode inscription actually sits — all of that lives in Supabase, enforced by row-level security and a couple of Postgres functions, so the rules hold even if something talks to the API directly instead of going through the app. The one place this shows up most clearly is privacy: when you post to a wide area instead of an exact point, the blur isn't a map overlay hiding a precise coordinate that's sitting in the database somewhere — the imprecise version is the only one that ever gets written. There's nothing to leak later because the real value never existed server-side to begin with.
 
-The nearby-feed and map queries run through a PostGIS RPC in Supabase rather than pulling everything down and filtering client-side. Row-level security sits on every table, and rate limiting is enforced by a database trigger, not app code, since a client can always be bypassed.
+Reads follow the same "push it into Postgres" instinct. The map and the nearby feed both call a single PostGIS function that does the actual distance filtering, rather than the client pulling everything down and sorting it out locally — which also meant blocking between two users and the per-hour posting limit could live in the same place, as a query filter and a trigger, instead of scattered checks in the app.
 
-The proximity alerts turned out to be the hardest part by a wide margin. iOS only lets you monitor about 20 geofence regions at once, but inscriptions are scattered worldwide, so I ended up building a rolling "leash" region around wherever the geofence list was last refreshed — walk far enough and it re-registers the nearest set. No continuous background location tracking involved.
+Proximity alerts needed the same "don't trust anything you don't have to" thinking applied somewhere I didn't expect: iOS itself. The OS caps you at watching roughly 20 geofences at once, which doesn't work when inscriptions are scattered across the planet, so the app watches whatever's nearest plus one large region around wherever it last checked in. Wander far enough to step outside that outer region and it quietly re-registers the next nearest batch on its own. Everything after that first setup is the OS waking the app up when you cross a boundary — no polling loop, no background timer, nothing keeping the location running when you're not near anything.
 
 ## Built with
 
