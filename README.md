@@ -1,39 +1,49 @@
 # Sigil
 
-A location-based social app where users leave short messages — inscriptions — pinned to real-world places, for strangers to discover as they pass by.
+Sigil is an iOS app for leaving short messages at real-world locations. You write something, pin it to wherever you're standing (or blur it out to a wider area if you'd rather not share your exact spot), and it just sits there until a stranger walks close enough to find it.
 
-## What it does
+The idea borrows from the soapstone messages in FromSoftware's action RPGs — leaving something behind for the next person, with no way to know who'll read it or when. I wanted to see what that mechanic feels like mapped onto actual physical space instead of a game world.
 
-- Compose a short message from a curated word bank, optionally attach a photo, and pin it to your exact location or a wider area for extra privacy
-- Browse a live map or a nearby feed to find inscriptions other people have left around you
-- Appraise the ones that resonate
-- Get a local notification the moment you pass near an inscription — detection happens entirely on-device, and no location data is ever sent anywhere for this feature
-- Start anonymously; claim an account with email or Sign In with Apple whenever you want to keep your inscriptions across devices
+<p align="center">
+  <img src="screenshots/inscription-builder.png" width="260" alt="Composing an inscription with a photo and caption" />
+  <img src="screenshots/legacy-profile.png" width="260" alt="A profile screen showing posted inscriptions" />
+  <img src="screenshots/word-bank-search.png" width="260" alt="Searching the caption word bank" />
+</p>
 
-Sigil's central mechanic — an asynchronous message system tied to physical space — draws on the tradition of FromSoftware's action RPGs, reimagined for the real world.
+## What's actually in it
 
-## Why it's interesting, engineering-wise
+You can browse a live map or a nearby-feed list of inscriptions other people have left, with nearby pins clustering together and splitting apart as you zoom in. Tap one to see the photo full-screen and "appraise" it if it resonates with you. If you want to be notified when you walk near a new one, there's an opt-in proximity alert — the detection happens entirely on-device through iOS geofencing, so no location data ever leaves your phone for that feature specifically.
 
-- **Privacy by construction, not by display** — for area-based inscriptions, precise coordinates are never stored in the first place; the imprecision is a property of the data, not a rendering trick layered on top.
-- **Geospatial computation lives server-side** — nearest-neighbor queries run through a PostGIS RPC, not client-side filtering over a full table.
-- **On-device geofencing for proximity alerts** — works around iOS's ~20-region region-monitoring limit with a rolling "leash" region strategy, instead of continuous background location tracking.
-- **Defense-in-depth access control** — Postgres Row-Level Security on every table, plus a database trigger enforcing rate limits, so the rules hold even against a client talking to the API directly.
-- **Anonymous-first identity** — the app is fully usable without ever creating an account, then upgrades to email or Sign In with Apple later without losing any existing content.
+<p align="center">
+  <img src="screenshots/map-clusters.png" width="280" alt="The world map with inscriptions clustering by region" />
+</p>
 
-## Stack
+Accounts are anonymous by default. You can use the whole app without signing up for anything, and claim it later with an email or Sign In with Apple if you want your inscriptions to follow you across devices.
 
-React Native + Expo (TypeScript) · Supabase (PostgreSQL + PostGIS, Auth, Storage) · RevenueCat
+<p align="center">
+  <img src="screenshots/account-creation.png" width="260" alt="The account claim screen" />
+  <img src="screenshots/proximity-alerts.png" width="260" alt="The proximity alerts settings modal" />
+  <img src="screenshots/fullscreen-photo.png" width="260" alt="Viewing an inscription's photo full-screen" />
+</p>
 
-## Status
+## A few things worth mentioning if you're reading the code
 
-In active development, preparing for App Store submission.
+Area-mode inscriptions never store a precise coordinate in the first place — the imprecision happens at write time, not as a display-layer blur over real data. That felt like the only honest way to do it once I thought about what "private" actually needs to mean here.
 
-## Privacy & Terms
+The nearby-feed and map queries run through a PostGIS RPC in Supabase rather than pulling everything down and filtering client-side. Row-level security sits on every table, and rate limiting is enforced by a database trigger, not app code, since a client can always be bypassed.
+
+The proximity alerts turned out to be the hardest part by a wide margin. iOS only lets you monitor about 20 geofence regions at once, but inscriptions are scattered worldwide, so I ended up building a rolling "leash" region around wherever the geofence list was last refreshed — walk far enough and it re-registers the nearest set. No continuous background location tracking involved.
+
+## Built with
+
+React Native + Expo (TypeScript), Supabase for the backend (Postgres, PostGIS, Auth, Storage), RevenueCat for the subscription tier.
+
+## Where things stand
+
+Still in development — I'm working through the App Store submission process now.
+
+## Links
 
 - [Privacy Policy](https://tahadeol.github.io/Sigil/privacy.html)
 - [Terms of Service](https://tahadeol.github.io/Sigil/terms.html)
 - [Support](https://tahadeol.github.io/Sigil/)
-
-## Screenshots
-
-_Coming soon._
