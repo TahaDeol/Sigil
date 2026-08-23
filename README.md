@@ -4,6 +4,8 @@ Sigil is an iOS app for leaving short messages at real-world locations. You writ
 
 The idea borrows from the soapstone messages in FromSoftware's action RPGs — leaving something behind for the next person, with no way to know who'll read it or when. I wanted to see what that mechanic feels like mapped onto actual physical space instead of a game world.
 
+**[Read the full case study →](https://tahadeol.github.io/Sigil/case-study.html)** — the problem, the architecture, and the harder bugs along the way.
+
 <p align="center">
   <img src="screenshots/inscription-builder.png" width="260" alt="Composing an inscription with a photo and caption" />
   <img src="screenshots/legacy-profile.png" width="260" alt="A profile screen showing posted inscriptions" />
@@ -44,6 +46,7 @@ Still in development — I'm working through the App Store submission process no
 
 ## Links
 
+- [Case Study](https://tahadeol.github.io/Sigil/case-study.html)
 - [Privacy Policy](https://tahadeol.github.io/Sigil/privacy.html)
 - [Terms of Service](https://tahadeol.github.io/Sigil/terms.html)
 - [Support](https://tahadeol.github.io/Sigil/)

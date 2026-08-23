@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case Study — Sigil</title>
+<link rel="icon" href="favicon.png" />
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #0D0B07;
+    color: #F2E8D0;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header.page {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  header.page img { width: 40px; height: 40px; border-radius: 8px; }
+  header.page .title { font-size: 22px; letter-spacing: 0.03em; color: #F4D06F; }
+  .back { display: inline-block; margin-bottom: 24px; font-size: 14px; color: #C9A84C; text-decoration: none; }
+  .back:hover { color: #F4D06F; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 8px 0 44px; }
+  .hero .eyebrow {
+    color: #8A8070;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    color: #F4D06F;
+    font-size: 34px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    margin: 0 0 16px;
+  }
+  .hero .subhead {
+    color: #C9BBA0;
+    font-size: 17px;
+    max-width: 540px;
+    margin: 0 auto 28px;
+  }
+  .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .badge {
+    display: inline-block;
+    border: 1px solid #3a2f18;
+    color: #C9A84C;
+    background: rgba(201, 168, 76, 0.06);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .hero-rule {
+    margin: 40px auto 0;
+    width: 60px;
+    height: 1px;
+    background: #3a2f18;
+  }
+
+  /* Section scaffolding */
+  section.block { margin-top: 56px; }
+  .section-num {
+    color: #6B6250;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  h2 {
+    color: #F4D06F;
+    font-size: 22px;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid #2a2010;
+    padding-bottom: 10px;
+    margin: 0 0 20px;
+  }
+  h3 {
+    color: #C9A84C;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    margin: 30px 0 8px;
+  }
+  h3:first-of-type { margin-top: 4px; }
+  p { color: #F2E8D0; font-size: 16px; margin: 0 0 14px; }
+  a { color: #C9A84C; }
+  a:hover { color: #F4D06F; }
+
+  /* Screenshot gallery */
+  .shots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 18px 0 8px;
+  }
+  .shots.single { justify-content: center; }
+  figure { margin: 0; text-align: center; }
+  figure img {
+    max-width: 240px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #3a2f18;
+    display: block;
+  }
+  figcaption {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #8A8070;
+    max-width: 240px;
+  }
+
+  /* Stack list */
+  .stack-line { color: #C9BBA0; font-size: 15px; margin-top: 4px; }
+  .stack-line strong { color: #F4D06F; font-weight: normal; }
+
+  /* Footer */
+  .links { margin-top: 56px; padding-top: 24px; border-top: 1px solid #2a2010; font-size: 14px; color: #8A8070; }
+  .links a { margin-right: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page">
+  <img src="favicon.png" alt="" />
+  <span class="title">SIGIL</span>
+</header>
+<a class="back" href="index.html">&larr; Sigil</a>
+
+<div class="hero">
+  <div class="eyebrow">Case Study</div>
+  <h1>Building a message board that leaves no trace it shouldn't</h1>
+  <p class="subhead">A solo-built iOS app that turns real-world coordinates into a place to leave something behind — from first idea through App Store submission.</p>
+  <div class="badges">
+    <span class="badge">React Native + Expo</span>
+    <span class="badge">Supabase — Postgres · PostGIS</span>
+    <span class="badge">RevenueCat</span>
+    <span class="badge">Solo project</span>
+  </div>
+  <div class="hero-rule"></div>
+</div>
+
+<section class="block">
+  <div class="section-num">01</div>
+  <h2>The idea</h2>
+  <p>Most location-based apps use place as a filter — sort what's already global down to what's nearby. I wanted the opposite: content that only gets made by actually being somewhere, even if you can go looking for it from anywhere.</p>
+  <p>The idea borrows from the message system in FromSoftware's action RPGs — other players leave short, cryptic notes pinned to the game world, and you stumble on them without ever meeting who wrote them. I kept wondering what that would feel like mapped onto an actual street corner instead of a level design. So Sigil is that: you write something, pin it to where you're standing (or blur it out to a wider area if you'd rather not share your exact spot), and it sits there until someone finds it.</p>
+  <p>Two decisions followed straight from that premise, both of which ended up shaping a lot of the engineering later on. The first was about creation, not discovery: an inscription only gets made by actually being somewhere — you write it standing at the spot, never from a form that lets you drop a pin on a map you've never visited. Finding them is more forgiving — the app defaults to what's near you, the way you'd stumble onto one on foot, but nothing stops you from panning the map out and browsing what's been left anywhere in the world, the way you might flip through a photo album of places you've never been. Second, the privacy story couldn't be an afterthought: if you're publishing something tied to your physical location, "blurred on the map but exact in the database" isn't good enough — the imprecise version has to be the only version that ever gets written.</p>
+</section>
+
+<section class="block">
+  <div class="section-num">02</div>
+  <h2>What it does</h2>
+
+  <h3>Finding what's out there</h3>
+  <p>The map is the front door — inscriptions cluster into numbered badges as you zoom out and split apart as you zoom in, so a spot with fifty messages doesn't drown out a spot with one. A radius control lets you stay hyper-local or pull all the way out to see everything posted worldwide, log-scaled so the same slider works at both ends.</p>
+  <div class="shots single">
+    <figure><img src="../screenshots/map-clusters.png" alt="The world map with inscriptions clustering by region" /><figcaption>The map, clustering by region</figcaption></figure>
+  </div>
+
+  <h3>Writing one</h3>
+  <p>There's no free-text caption field — every inscription is built from a curated set of templates and word categories, the same constraint the source material itself uses to keep messages evocative instead of generic. Pick a template, fill the blanks from a searchable word list, optionally attach a photo (stripped of EXIF data and compressed before it ever leaves the device), then choose precise or blurred-area placement.</p>
+  <div class="shots">
+    <figure><img src="../screenshots/inscription-builder.png" alt="Composing an inscription with a photo and caption" /><figcaption>Composing an inscription</figcaption></figure>
+    <figure><img src="../screenshots/word-bank-search.png" alt="Searching the caption word bank" /><figcaption>Searching the word bank</figcaption></figure>
+  </div>
+
+  <h3>Reacting to one</h3>
+  <p>Tap an inscription to view its photo full-screen and "appraise" it if it resonates — a lightweight, reversible upvote, not a comment thread.</p>
+  <div class="shots single">
+    <figure><img src="../screenshots/fullscreen-photo.png" alt="Viewing an inscription's photo full-screen" /><figcaption>Full-screen photo view</figcaption></figure>
+  </div>
+
+  <h3>Showing up without an account</h3>
+  <p>Everything above works with zero signup. The app opens an anonymous session automatically, and claiming it later with an email or Sign In with Apple upgrades that same underlying identity rather than creating a new one — nothing already posted gets orphaned.</p>
+  <div class="shots single">
+    <figure><img src="../screenshots/account-creation.png" alt="The account claim screen" /><figcaption>Claiming an anonymous account</figcaption></figure>
+  </div>
+
+  <h3>Knowing when something's nearby</h3>
+  <p>An opt-in proximity alert uses iOS's native geofencing to notify you when you walk near a new inscription — detection happens entirely on-device, so no location data leaves the phone for this feature specifically.</p>
+  <div class="shots single">
+    <figure><img src="../screenshots/proximity-alerts.png" alt="The proximity alerts settings modal" /><figcaption>Proximity alert settings</figcaption></figure>
+  </div>
+
+  <h3>Sigil+</h3>
+  <p>A small paid tier, deliberately self-referential — it doesn't change what other people can see or do, only how a subscriber's own presence in the app looks and behaves: unlimited posting instead of the free tier's hourly cap, custom pin and card styling, one featured inscription pinned to the top of a profile.</p>
+  <div class="shots single">
+    <figure><img src="../screenshots/sigil-plus-paywall.png" alt="The Sigil+ subscription paywall" /><figcaption>Sigil+</figcaption></figure>
+  </div>
+</section>
+
+<section class="block">
+  <div class="section-num">03</div>
+  <h2>How it's built</h2>
+  <p>The client is intentionally thin. It doesn't decide who can see what, how fast someone can post, or where the boundary of a blurred-area inscription actually sits — all of that lives in Postgres, enforced by row-level security and a handful of functions, so the rules hold even if something talks to the API directly instead of going through the app.</p>
+  <p>The privacy design mentioned earlier is the clearest example of that instinct. When you post to a wide area instead of an exact point, the blur isn't a map overlay hiding a precise coordinate that's sitting in the database somewhere — the imprecise version is the only one that ever gets written. There's nothing to leak later, because the real value never existed server-side to begin with.</p>
+  <p>Reads follow the same "push it into Postgres, not the client" logic. The map and the nearby feed both call a single PostGIS function that does the actual distance filtering server-side, rather than pulling everything down and sorting it out locally. That same function ended up being the natural home for two other rules that have nothing to do with geography on the surface — a per-user block list and an hourly posting cap — because "filter what this specific request is even allowed to return" was already the shape of the problem.</p>
+  <p>Identity follows the same philosophy in a different direction: an account starts anonymous, and claiming it with email or Sign In with Apple upgrades that same underlying identity rather than replacing it, so nothing posted before you signed up ever gets orphaned.</p>
+  <p class="stack-line"><strong>Client —</strong> React Native + Expo, TypeScript</p>
+  <p class="stack-line"><strong>Backend —</strong> Supabase: Postgres, PostGIS, Auth, Storage, Edge Functions</p>
+  <p class="stack-line"><strong>Payments —</strong> RevenueCat, for App Store subscription state and receipt validation</p>
+</section>
+
+<section class="block">
+  <div class="section-num">04</div>
+  <h2>Hard problems solved</h2>
+
+  <h3>A 20-region limit on a planet-sized map</h3>
+  <p>Proximity alerts sounded simple until I read into how iOS actually implements geofencing: the OS caps you at watching roughly twenty regions at once, which doesn't work when inscriptions are scattered across the entire planet. The fix was a "leash" — alongside up to nineteen regions around the nearest inscriptions, one large region gets registered around wherever the list was last refreshed, watching only for you to exit it. Wander far enough to leave that outer boundary and the same mechanism quietly re-registers the next nearest batch on its own, no separate background-tracking system required.</p>
+  <p>There was a second, less expected layer underneath that: even with the region math right, notifications silently weren't firing on a real device. Permissions were granted, positions were tracked, the regions being registered were correct — the actual bug turned out to be one property Expo's own geofencing module sets internally regardless of anything the app does, which iOS refuses to honor unless the app's Info.plist declares a location background mode. Only found by reading that native module's source directly rather than trusting the higher-level config.</p>
+
+  <h3>One feature, four bugs</h3>
+  <p>Appraising an inscription looked broken for a while, and it took several rounds to realize it wasn't one bug — it was four independent ones stacked on top of each other, each masking whether the others were fixed. The insert was missing a column a security policy required, so every appraisal was silently rejected. The count on each card was a stored counter nothing ever actually incremented. Un-appraising had no delete permission and no way for the app to know upfront it had already happened. And the one screen showing your own posts ran a completely separate query from everywhere else, so it kept looking broken even after the other three were fixed. The real lesson: a feature that "still doesn't work" after one real fix is worth assuming has more than one bug in it, not re-diagnosing the first one.</p>
+
+  <h3>A silent opt-out hiding inside a Fragment</h3>
+  <p>Adding marker clustering to the map meant handing its children over to a third-party clustering library. Precise-location pins clustered fine; blurred-area ones never did. The library decides what counts as a marker by walking its direct children and checking each one's type — and wrapping an area sigil's marker and its privacy-radius circle in a single React Fragment, a completely reasonable way to group two related elements, made the whole pair invisible to that check. Nothing errored; the pins were there, they'd just permanently opted out of clustering with no signal why. The fix was mechanical once found — two flat, unwrapped passes instead of one wrapped one.</p>
+
+  <h3>A permission fix that didn't actually apply itself</h3>
+  <p>The subscription entitlement lives on two columns on a user's own row, locked down from the start with a targeted revoke specifically so no client could grant itself the paid tier. It looked correct and went unquestioned for a while. It wasn't: the platform grants a blanket, table-wide update permission to every signed-in client by default, and database privilege checks are additive — a narrow revoke layered on top of a broader grant doesn't narrow it, it does nothing. Any signed-in client could have set their own subscription flag directly through the API for as long as it existed. Found while wiring up an unrelated feature and re-checking the client's actual write surface, closed by revoking the broad grant outright and re-granting only the specific columns the app is meant to write.</p>
+</section>
+
+<section class="block">
+  <div class="section-num">05</div>
+  <h2>Where it stands</h2>
+  <p>Sigil is in Apple's review pipeline right now — the build is submitted, and once it clears I'll open it up to a wider App Store audience. In the meantime it's already running as a closed TestFlight beta with a small group of friends and family, which turned out to be useful timing rather than just parallel busywork: the moderation system (report and block) needed two real accounts interacting to actually verify, something a solo dev testing alone structurally can't do, so that's one of the specific things this round of testers is walking through.</p>
+</section>
+
+<div class="links">
+  <a href="index.html">Support</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+  <a href="mailto:taha.asim.deol@hotmail.com">Contact</a>
+</div>
+</div>
+</body>
+</html>
