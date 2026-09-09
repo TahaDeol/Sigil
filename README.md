@@ -1,4 +1,10 @@
+<p align="center">
+  <img src="thumbnails/sigil-banner-1600x400.png" alt="Sigil" />
+</p>
+
 # Sigil
+
+**[Get it on the App Store](https://apps.apple.com/app/sigil/id6799269635)**
 
 Sigil is an iOS app for leaving short messages at real-world locations. You write something, pin it to wherever you're standing (or blur it out to a wider area if you'd rather not share your exact spot), and it just sits there until a stranger walks close enough to find it.
 
@@ -42,10 +48,11 @@ React Native + Expo (TypeScript), Supabase for the backend (Postgres, PostGIS, A
 
 ## Where things stand
 
-Still in development — I'm working through the App Store submission process now.
+Sigil 1.0 is live on the App Store as of September 9, 2026. I'm still working on it: the next things on the list are a verified sending domain for account emails and a proper VoiceOver pass.
 
 ## Links
 
+- [App Store](https://apps.apple.com/app/sigil/id6799269635)
 - [Case Study](https://tahadeol.github.io/Sigil/case-study.html)
 - [Privacy Policy](https://tahadeol.github.io/Sigil/privacy.html)
 - [Terms of Service](https://tahadeol.github.io/Sigil/terms.html)
