@@ -50,7 +50,7 @@ Sigil 1.0 is live on the App Store as of September 9, 2026. I'm still working on
 
 ## This repo
 
-This repo is the Sigil website, deployed to Vercel from the root:
+This repo is the Sigil website at [getsigil.ca](https://getsigil.ca), deployed to Vercel from the root:
 
 - `index.html`, `styles.css`, `carousel.js` — landing page and support section
 - `privacy.html`, `terms.html` — generated from the app's legal text, never edited by hand
@@ -62,6 +62,7 @@ This repo is the Sigil website, deployed to Vercel from the root:
 ## Links
 
 - [App Store](https://apps.apple.com/app/sigil/id6799269635)
-- [Privacy Policy](https://tahadeol.github.io/Sigil/privacy.html)
-- [Terms of Service](https://tahadeol.github.io/Sigil/terms.html)
-- [Support](https://tahadeol.github.io/Sigil/)
+- [Website](https://getsigil.ca)
+- [Privacy Policy](https://getsigil.ca/privacy)
+- [Terms of Service](https://getsigil.ca/terms)
+- [Support](https://getsigil.ca/#support)
