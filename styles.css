@@ -69,14 +69,14 @@ h1, h2, h3, p { margin: 0; font-weight: 400; }
   max-width: 16ch; text-wrap: balance;
 }
 .lede { font-size: 17px; line-height: 1.6; color: var(--ash); max-width: 52ch; text-wrap: pretty; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 8px; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: center; margin-top: 8px; }
+.badge-link { display: inline-flex; border-radius: 8px; }
+.badge-link img { height: 50px; width: auto; display: block; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 50px; padding: 12px 28px; border-radius: 4px; font-size: 15px;
   transition: background 200ms, color 200ms, border-color 200ms;
 }
-.btn-primary { background: var(--gold); color: var(--bg); }
-.btn-primary:hover { background: var(--gold-bright); color: var(--bg); }
 .btn-ghost { border: 1px solid var(--border); color: var(--ash); font-size: 14px; padding-inline: 24px; }
 .btn-ghost:hover { border-color: var(--border-gold); color: var(--parchment); }
 
