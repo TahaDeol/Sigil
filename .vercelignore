@@ -1,0 +1,6 @@
+# Not part of the Vercel deployment
+docs
+screenshots
+thumbnails
+README.md
+.DS_Store

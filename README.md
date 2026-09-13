@@ -10,8 +10,6 @@ Sigil is an iOS app for leaving short messages at real-world locations. You writ
 
 The idea borrows from the soapstone messages in FromSoftware's action RPGs — leaving something behind for the next person, with no way to know who'll read it or when. I wanted to see what that mechanic feels like mapped onto actual physical space instead of a game world.
 
-**[Read the full case study →](https://tahadeol.github.io/Sigil/case-study.html)** — the problem, the architecture, and the harder bugs along the way.
-
 <p align="center">
   <img src="screenshots/inscription-builder.png" width="260" alt="Composing an inscription with a photo and caption" />
   <img src="screenshots/legacy-profile.png" width="260" alt="A profile screen showing posted inscriptions" />
@@ -50,10 +48,20 @@ React Native + Expo (TypeScript), Supabase for the backend (Postgres, PostGIS, A
 
 Sigil 1.0 is live on the App Store as of September 9, 2026. I'm still working on it: the next things on the list are a verified sending domain for account emails and a proper VoiceOver pass.
 
+## This repo
+
+This repo is the Sigil website, deployed to Vercel from the root:
+
+- `index.html`, `styles.css`, `carousel.js` — landing page and support section
+- `privacy.html`, `terms.html` — generated from the app's legal text, never edited by hand
+- `shots/`, `assets/`, `favicon.png` — images
+- `vercel.json` — clean URLs (`/privacy`, `/terms`) and cache headers
+
+`docs/` is the previous GitHub Pages site. It stays up until App Store Connect points at the new domain, then it will be removed.
+
 ## Links
 
 - [App Store](https://apps.apple.com/app/sigil/id6799269635)
-- [Case Study](https://tahadeol.github.io/Sigil/case-study.html)
 - [Privacy Policy](https://tahadeol.github.io/Sigil/privacy.html)
 - [Terms of Service](https://tahadeol.github.io/Sigil/terms.html)
 - [Support](https://tahadeol.github.io/Sigil/)
