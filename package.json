@@ -1,0 +1,26 @@
+{
+  "name": "sigil",
+  "version": "1.0.0",
+  "description": "Sigil - Leave inscriptions at real places, an iPhone app",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TahaDeol/Sigil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TahaDeol/Sigil/issues"
+  },
+  "homepage": "https://github.com/TahaDeol/Sigil#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
